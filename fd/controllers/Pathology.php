@@ -8,7 +8,7 @@ class Pathology extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->library('Auth');
-		$this->api = "https://uat.tez.hospital/xzy/lis/";
+		$this->api = "https://siraha.tez.hospital/xzy/lis/";
 
 	}
 
