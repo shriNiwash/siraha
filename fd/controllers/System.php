@@ -23,12 +23,13 @@ class System extends CI_Controller {
 	}
 	public function login()
 	{
+
 		$ses_data = $this->session->userdata('user_data');
 		if(!empty($ses_data))
 		{
 			redirect('pathology');
 		}
-		$apiEndpoint = $this->api . 'login';
+		$apiEndpoint ='https://siraha.tez.hospital/xzy/lis/login';
 		$username = $this->input->post('username');
 		$password = $this->input->post('password');
 

@@ -17,7 +17,6 @@ class Pathology extends CI_Controller {
 	public function conn()
 	{
 
-		// print_r(phpinfo()); die;
 		include APPPATH . 'third_party/lab/HL7.php';
 		include APPPATH . 'third_party/lab/HL7/Connection.php';
 		include APPPATH . 'third_party/lab/HL7/Message.php';
@@ -70,16 +69,12 @@ class Pathology extends CI_Controller {
 			curl_setopt($ch, CURLOPT_TIMEOUT, 30);
 			$response = curl_exec($ch);
 			$responseData = json_decode($response);
-			// print_r($responseData->pathologist);die;
 			$data['result'] = $responseData->result;
 			$data['status'] = "0";
 			$data['bloodgroup'] = $responseData->bloodgroup;
 			$data['pathologist'] = $responseData->pathologist;
 			$data['prefix'] = $responseData->bill_prefix;
 			$data['username'] = $name;
-
-
-
 			$this->load->view('pathologylist',$data);
 		}else {
 			redirect('/');
@@ -90,7 +85,6 @@ class Pathology extends CI_Controller {
 	public function old_report()
 	{
 		$session_data = $this->session->userdata('user_id');
-		// print_r($session_data);die;
 		if(!empty($session_data))
 		{
 			$apiEndpoint = $this->api . 'getpathologybillDatatable_old';
@@ -106,15 +100,12 @@ class Pathology extends CI_Controller {
 			curl_setopt($ch, CURLOPT_TIMEOUT, 30);
 			$response = curl_exec($ch);
 			$responseData = json_decode($response);
-			// print_r($responseData->pathologist);die;
 			$data['result'] = $responseData->result;
 			$data['status'] = "1";
 			$data['prefix'] = $responseData->bill_prefix;
-
 			$data['bloodgroup'] = $responseData->bloodgroup;
 			$data['pathologist'] = $responseData->pathologist;
 			$this->load->view('pathologylist',$data);
-
 		}
 		else{
 			redirect('/');
